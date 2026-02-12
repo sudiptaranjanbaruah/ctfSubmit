@@ -93,10 +93,21 @@ app.post('/login', authLimiter, (req, res) => {
   const { username, password } = req.body;
   const users = readPasswords();
 
+  console.log(`Login attempt for user: ${username}`);
+
   if (users[username] && users[username] === password) {
+    console.log(`Credentials valid for user: ${username}`);
     req.session.user = username;
-    res.json({ success: true, username });
+    req.session.save((err) => {
+      if (err) {
+        console.error('Session save error:', err);
+        return res.status(500).json({ success: false, error: 'Session error' });
+      }
+      console.log('Session saved successfully');
+      res.json({ success: true, username });
+    });
   } else {
+    console.log(`Invalid credentials for user: ${username}`);
     res.status(401).json({ success: false, error: 'Invalid credentials' });
   }
 });
