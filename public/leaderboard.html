@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF Leaderboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .leaderboard-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: white;
+            border: 3px solid #2c3e50;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 2px solid #2c3e50;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-family: 'Architects Daughter', cursive;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            background: #ecf0f1;
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: #3498db;
+            color: white;
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .leaderboard-table th,
+        .leaderboard-table td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid #bdc3c7;
+            font-size: 1.1rem;
+        }
+
+        .leaderboard-table th {
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .leaderboard-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .rank-cell {
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .back-btn {
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>CTF LEADERBOARD</h1>
+        <div class="user-info">
+            <a href="index.html" class="btn-secondary back-btn">← Back to Challenges</a>
+            <button id="logoutBtn" class="btn-secondary">Logout</button>
+        </div>
+    </div>
+
+    <div class="leaderboard-container">
+        <div class="tabs" id="leaderboardTabs">
+            <button class="tab-btn active" data-tab="overall">Overall</button>
+            <!-- CTF tabs will be inserted here -->
+        </div>
+
+        <div id="leaderboardContent">
+            <!-- Table will be rendered here -->
+        </div>
+    </div>
+
+    <script src="leaderboard.js"></script>
+    <script>
+        // Reuse logout logic
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try {
+                await fetch('/logout', { method: 'POST' });
+                window.location.href = 'login.html';
+            } catch (error) {
+                console.error('Logout failed:', error);
+            }
+        });
+    </script>
+</body>
+
+</html>

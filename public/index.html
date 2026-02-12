@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <h1>CTF SUBMISSION</h1>
+        <div class="user-info">
+            <span id="username"></span>
+            <button id="logoutBtn" class="btn-secondary">Logout</button>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <h2>Menu</h2>
+            <a href="leaderboard.html" class="btn-primary"
+                style="display:block; text-align:center; text-decoration:none; margin-bottom:20px;">View Leaderboard</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="ctf-grid" id="ctfGrid">
+            <!-- CTF cards will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Modal for flag submission -->
+    <div id="submitModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+
+            <div class="submit-section">
+                <label for="flagInput">Submit your flag here</label>
+                <input type="text" id="flagInput" placeholder="flag{...}">
+            </div>
+
+            <div class="modal-buttons">
+                <button id="submitBtn" class="btn-primary">Submit</button>
+                <button id="cancelBtn" class="btn-secondary">Cancel</button>
+            </div>
+
+            <div id="modalMessage" class="modal-message"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
